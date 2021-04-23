@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import {isEmpty} from '../../utils/Utils';
 import {
     CREATE_USER_ERROR,
@@ -10,7 +11,7 @@ import {
 export const signupNewUser = userData => dispatch => {
     dispatch({type: CREATE_USER_SUBMITTED});
     axios
-        .post("/api/v1/users/", userData)
+        .post("/api/v1/signup", userData)
         .then(response => {
             toast.success(
                 "Account for " +

@@ -6,15 +6,15 @@ class Home extends Component {
     render() {
         return (
             <Container>
-                <h1>Home</h1>
+                <h1>Mājas</h1>
                 <p>
-                    <Link to="/login">Login</Link>
+                    <Link to="/login">Pieslēgties</Link>
                 </p>
                 <p>
-                    <Link to="/signup">Sign up</Link>
+                    <Link to="/signup">Reģistrēties</Link>
                 </p>
                 <p>
-                    <Link to="/dashboard">Dashboard</Link>
+                    <Link to="/dashboard">Galvenais panelis</Link>
                 </p>
             </Container>
         );

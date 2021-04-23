@@ -12,8 +12,9 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            password: ""
+            email: "",
+            password: "",
+            remember_me: true
         };
     }
 
@@ -21,10 +22,15 @@ class Login extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
+    handleCheckBox = e => {
+        this.setState({ [e.target.name]: !e.target.checked });
+    }
+
     onLoginClick = () => {
         const userData = {
             password: this.state.password,
-            username: this.state.username,
+            email: this.state.email,
+            remember_me: this.state.remember_me
         };
         this.props.login(userData, "/dashboard");
     };
@@ -34,35 +40,45 @@ class Login extends Component {
             <Container>
                 <Row>
                     <Col md="4">
-                        <h1>Login</h1>
+                        <h1>Pieslēgties</h1>
                         <Form>
-                            <Form.Group controlId="usernameId">
-                                <Form.Label>User name</Form.Label>
+                            <Form.Group controlId="emailId">
+                                <Form.Label>Epasts</Form.Label>
                                 <Form.Control
-                                    type="text"
-                                    name="username"
-                                    placeholder="Enter user name"
-                                    value={this.state.username}
+                                    type="email"
+                                    name="email"
+                                    placeholder="Ievadi e-pastu"
+                                    value={this.state.email}
                                     onChange={this.onChange}
                                 />
                             </Form.Group>
 
                             <Form.Group controlId="passwordId">
-                                <Form.Label>Your password</Form.Label>
+                                <Form.Label>Parole</Form.Label>
                                 <Form.Control
                                     type="password"
                                     name="password"
-                                    placeholder="Enter password"
+                                    placeholder="Ievadi paroli"
                                     value={this.state.password}
                                     onChange={this.onChange}
                                 />
                             </Form.Group>
+
+                            <Form.Group controlId="remember_me">
+                                <Form.Label>Vai atcerēties?</Form.Label>
+                                <Form.Control
+                                    type="checkbox"
+                                    name="remember_me"
+                                    value={this.state.remember_me}
+                                    onChange={this.handleCheckBox}
+                                />
+                            </Form.Group>
                         </Form>
                         <Button color="primary" onClick={this.onLoginClick}>
-                            Login
+                            Pieslēgties
                         </Button>
                         <p className="mt-2">
-                            Don't have an account? <Link to="/signup">Signup</Link>
+                            Vai neesi reģistrējies? <Link to="/signup">Reģistrēties</Link>
                         </p>
                     </Col>
                 </Row>

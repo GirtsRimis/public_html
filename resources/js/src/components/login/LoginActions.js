@@ -3,15 +3,16 @@ import { push } from "connected-react-router";
 import { toast } from "react-toastify";
 import { SET_TOKEN, SET_CURRENT_USER, UNSET_CURRENT_USER } from "./LoginTypes";
 import { setAxiosAuthToken, toastOnError } from "../../utils/Utils";
+import 'react-toastify/dist/ReactToastify.css';
 
 // , { headers: {"Content-Type": "authorization"} }
 
 export const login = (userData, redirectTo) => dispatch => {
   axios
-    .post("/api/v1/token/login/", userData)
+    .post("/api/v1/login/", userData)
     .then(response => {
-      const { auth_token } = response.data;
-      // console.log(auth_token)
+      console.log(response)
+      const { auth_token } = response.data.access_token;
       setAxiosAuthToken(auth_token);
       dispatch(setToken(auth_token));
       dispatch(getCurrentUser(redirectTo));
@@ -24,7 +25,7 @@ export const login = (userData, redirectTo) => dispatch => {
 
 export const getCurrentUser = redirectTo => dispatch => {
   axios
-    .get("/api/v1/users/me/")
+    .get("/api/v1/user/")
     .then(response => {
       const user = {
         username: response.data.username,
@@ -70,7 +71,7 @@ export const unsetCurrentUser = () => dispatch => {
 
 export const logout = () => dispatch => {
   axios
-    .post("/api/v1/token/logout/")
+    .post("/api/v1/logout/")
     .then(response => {
       dispatch(unsetCurrentUser());
       dispatch(push("/"));
