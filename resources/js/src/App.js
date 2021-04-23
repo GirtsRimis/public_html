@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
 import Root from './Root';
 import {Route, Switch} from 'react-router-dom';
@@ -33,6 +34,4 @@ class App extends Component {
     }
 }
 
-if (document.getElementById('app')) {
-    ReactDOM.render(<App />, document.getElementById('app'));
-}
+ReactDOM.render(<App />, document.getElementById('app'))
